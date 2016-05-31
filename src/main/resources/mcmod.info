@@ -1,0 +1,16 @@
+[
+{
+  "modid": "librarian",
+  "name": "Librarian",
+  "description": "Adds a working bookshelf.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["CsokiCraft"],
+  "credits": "FreonCooled for the concept",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
