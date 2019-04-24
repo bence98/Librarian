@@ -1,4 +1,6 @@
-package csokicraft.forge18.librarian;
+package csokicraft.forge19.librarian;
+
+import java.util.Locale;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -6,6 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.*;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
+import net.minecraft.util.text.*;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.util.Constants.NBT;
 
 public class TileEntityLibraryShelf extends TileEntity implements IInventory{
@@ -18,7 +22,7 @@ public class TileEntityLibraryShelf extends TileEntity implements IInventory{
 
 	@Override
 	public String getName() {
-		return hasCustomName()?customName:StatCollector.translateToLocal("container.libraryShelf");
+		return hasCustomName()?customName:I18n.translateToLocal("container.libraryShelf");
 	}
 
 	@Override
@@ -26,9 +30,14 @@ public class TileEntityLibraryShelf extends TileEntity implements IInventory{
 		return customName!=null;
 	}
 
-	@Override
+	/*@Override
 	public IChatComponent getDisplayName() {
 		return new ChatComponentText(getName());
+	}*/
+	
+	@Override
+	public ITextComponent getDisplayName() {
+		return new TextComponentString(getName());
 	}
 
 	@Override

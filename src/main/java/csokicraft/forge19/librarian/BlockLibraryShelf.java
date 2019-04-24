@@ -1,4 +1,4 @@
-package csokicraft.forge18.librarian;
+package csokicraft.forge19.librarian;
 
 import java.util.*;
 
@@ -10,8 +10,10 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -31,9 +33,8 @@ public class BlockLibraryShelf extends BlockContainer {
 	}
 
 	@Override
-	public boolean onBlockActivated(World w, BlockPos pos,
-			IBlockState state, EntityPlayer p, EnumFacing side,
-			float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer p,
+			EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
 		FMLNetworkHandler.openGui(p, Librarian.inst, Librarian.GUI_ID, w, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
@@ -55,8 +56,8 @@ public class BlockLibraryShelf extends BlockContainer {
 	}
 	
 	@Override
-	public int getRenderType() {
-		return 3;
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
 	}
 	
 	public boolean isToolEffective(String type, IBlockState state) {

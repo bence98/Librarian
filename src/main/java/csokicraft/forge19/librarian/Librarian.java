@@ -1,4 +1,4 @@
-package csokicraft.forge18.librarian;
+package csokicraft.forge19.librarian;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -17,10 +17,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @Mod(modid = Librarian.MODID, version = Librarian.VERSION)
 public class Librarian {
     public static final String MODID = "librarian";
-    public static final String VERSION = "1.0.2";
+    public static final String VERSION = "1.0.3";
     @Instance
 	public static Librarian inst;
-    @SidedProxy(clientSide="csokicraft.forge18.librarian.ClientProxy", serverSide="csokicraft.forge18.librarian.CommonProxy")
+    @SidedProxy(clientSide="csokicraft.forge19.librarian.ClientProxy", serverSide="csokicraft.forge19.librarian.CommonProxy")
     public static CommonProxy proxy;
     
     private Configuration conf;
