@@ -1,4 +1,5 @@
 # Librarian
 A MinecraftForge mod
 
-Built jar under the "output" folder, put it in your "mods" folder
+This mod adds a single block: the Library Bookshelf. You can store books in it. That's all.
+[Download](https://minecraft.curseforge.com/projects/librarian)
