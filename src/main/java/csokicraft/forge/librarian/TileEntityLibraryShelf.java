@@ -1,4 +1,4 @@
-package csokicraft.forge19.librarian;
+package csokicraft.forge.librarian;
 
 import java.util.Locale;
 
@@ -11,13 +11,14 @@ import net.minecraft.util.*;
 import net.minecraft.util.text.*;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.util.Constants.NBT;
+import net.minecraftforge.items.ItemStackHandler;
 
 public class TileEntityLibraryShelf extends TileEntity implements IInventory{
-	private ItemStack slots[];
+	private ItemStackHandler slots;
 	private String customName = null;
 	
 	public TileEntityLibraryShelf() {
-		slots=new ItemStack[27];
+		slots=new ItemStackHandler(27);
 	}
 
 	@Override
@@ -42,21 +43,20 @@ public class TileEntityLibraryShelf extends TileEntity implements IInventory{
 
 	@Override
 	public int getSizeInventory() {
-		return slots.length;
+		return slots.getSlots();
 	}
 
 	@Override
 	public ItemStack getStackInSlot(int index) {
-		return slots[index];
+		return slots.getStackInSlot(index);
 	}
 
 	@Override
 	public ItemStack decrStackSize(int index, int count) {
-		ItemStack slot=slots[index],
+		ItemStack slot=getStackInSlot(index),
 				is=slot.copy();
-		is.stackSize=Math.min(slot.stackSize, count);
-		slot.stackSize-=count;
-		if(slot.stackSize<=0) slots[index]=null;
+		is.setCount(Math.min(slot.getCount(), count));
+		slot.setCount(slot.getCount()-count);
 		return is;
 	}
 
@@ -68,13 +68,13 @@ public class TileEntityLibraryShelf extends TileEntity implements IInventory{
 	//1.8.9 forwards compatibility
 	public ItemStack removeStackFromSlot(int index) {
 		ItemStack is = getStackInSlot(index);
-		setInventorySlotContents(index, null);
+		setInventorySlotContents(index, ItemStack.EMPTY);
 		return is;
 	}
 
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack) {
-		slots[index]=stack;
+		slots.setStackInSlot(index, stack);
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class TileEntityLibraryShelf extends TileEntity implements IInventory{
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
+	public boolean isUsableByPlayer(EntityPlayer player) {
 		return player.getDistanceSq(pos)<64;
 	}
 
@@ -118,22 +118,23 @@ public class TileEntityLibraryShelf extends TileEntity implements IInventory{
 	@Override
 	public void clear() {
 		for(int i=0;i<getSizeInventory();i++)
-			setInventorySlotContents(i, null);
+			removeStackFromSlot(i);
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		NBTTagList l=new NBTTagList();
-		for(int i=0;i<slots.length;i++){
-			ItemStack is=slots[i];
-			if(is==null) continue;
+		for(int i=0;i<slots.getSlots();i++){
+			ItemStack is=getStackInSlot(i);
+			if(is.isEmpty()) continue;
 			NBTTagCompound c=new NBTTagCompound();
 			c.setInteger("atSlot", i);
 			is.writeToNBT(c);
 			l.appendTag(c);
 		}
 		nbt.setTag("items", l);
+		return nbt;
 	}
 	
 	@Override
@@ -143,8 +144,13 @@ public class TileEntityLibraryShelf extends TileEntity implements IInventory{
 		for(int i=0;i<l.tagCount();i++){
 			NBTTagCompound c=l.getCompoundTagAt(i);
 			int s=c.getInteger("atSlot");
-			ItemStack is=ItemStack.loadItemStackFromNBT(c);
+			ItemStack is=new ItemStack(c);
 			setInventorySlotContents(s, is);
 		}
+	}
+	
+	@Override
+	public boolean isEmpty(){
+		return false; //TODO
 	}
 }

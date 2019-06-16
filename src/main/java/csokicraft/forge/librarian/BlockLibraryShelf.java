@@ -1,4 +1,4 @@
-package csokicraft.forge19.librarian;
+package csokicraft.forge.librarian;
 
 import java.util.*;
 
@@ -24,17 +24,17 @@ public class BlockLibraryShelf extends BlockContainer {
 	private final String name="libraryShelf";
 
 	public BlockLibraryShelf() {
-		super(Material.wood);
+		super(Material.WOOD);
 	}
 	
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntityLibraryShelf();
 	}
-
+	
 	@Override
 	public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer p,
-			EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		FMLNetworkHandler.openGui(p, Librarian.inst, Librarian.GUI_ID, w, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
@@ -50,7 +50,7 @@ public class BlockLibraryShelf extends BlockContainer {
 			ItemStack is=te.getStackInSlot(i);
 			if(is==null) continue;
 			EntityItem e=new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), is);
-			worldIn.spawnEntityInWorld(e);
+			worldIn.spawnEntity(e);
 		}
 		super.breakBlock(worldIn, pos, state);
 	}

@@ -1,4 +1,4 @@
-package csokicraft.forge19.librarian;
+package csokicraft.forge.librarian;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
@@ -10,7 +10,7 @@ public class ClientProxy extends CommonProxy {
 	public void registerItemModels() {
 		ItemModelMesher imm=Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
 		Item shelfItem = ItemBlock.getItemFromBlock(Librarian.shelf);
-		ModelResourceLocation res = new ModelResourceLocation(Librarian.MODID+":libraryShelf", "inventory");
+		ModelResourceLocation res = new ModelResourceLocation(Librarian.MODID+":library_shelf", "inventory");
 		imm.register(shelfItem, 0, res);
 		ModelBakery.registerItemVariants(shelfItem, res);
 	}

@@ -1,4 +1,4 @@
-package csokicraft.forge19.librarian;
+package csokicraft.forge.librarian;
 
 import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.entity.player.EntityPlayer;

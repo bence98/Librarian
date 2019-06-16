@@ -1,4 +1,4 @@
-package csokicraft.forge19.librarian;
+package csokicraft.forge.librarian;
 
 import java.util.*;
 import net.minecraft.item.ItemStack;

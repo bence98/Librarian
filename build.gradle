@@ -14,8 +14,8 @@ compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
 
-version = "1.0.3"
-group= "csokicraft.forge19.librarian" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = "1.0.4"
+group= "csokicraft.forge.librarian" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Librarian"
 
 minecraft {

@@ -1,5 +1,5 @@
 {
-    "parent": "librarian:block/libraryShelf",
+    "parent": "librarian:block/library_shelf",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

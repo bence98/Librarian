@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "librarian:library_shelf",
+    "count": 8
+  },
+  "pattern": [
+    "bbb",
+    "bcb",
+    "bbb"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "b": {
+      "item": "minecraft:bookshelf"
+    },
+    "c": {
+      "type": "forge:ore_dict",
+      "ore": "chest"
+    }
+  }
+}
